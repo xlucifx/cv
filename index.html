@@ -1,277 +1,119 @@
 <!doctype html>
-	<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>Jakub Guzy — CV</title>
-		<meta name="description" content="Curriculum Vitae of Your Name">
-		<style>
-			:root{
-				--bg: #fbf7f3;
-				--card: #ffffff;
-				--skill-bg: #f6f2ef;
-				--muted: #111111;
-				--accent: #111111;
-				--text: #222222;
-				--glass: rgba(0,0,0,0.06);
-				--btn-text: #ffffff;
-				--max-width:900px;
-				color-scheme: light;
-				font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-			}
-			*{box-sizing:border-box}
-			html,body{height:100%;margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
-			.container{max-width:var(--max-width);margin:28px auto;padding:28px}
-
-			.cv-card{display:grid;grid-template-columns:280px 1fr;gap:28px;background:var(--card);border-radius:14px;padding:26px;box-shadow:0 6px 18px rgba(16,24,40,0.06);overflow:visible}
-
-			.left{padding:8px}
-			.left .name-under-photo{ text-align:center; margin-top:12px; font-size:1.8rem; font-weight:600 }
-			.avatar{width:100%;display:flex;justify-content:center}
-			.avatar img{width:180px;height:180px;border-radius:50%;object-fit:cover;border:none;background:var(--card)}
-			h1{font-size:1.6rem;margin:12px 0 2px}
-			h2.title{font-size:1rem;color:var(--muted);margin:0 0 12px}
-			.contact{font-size:0.9rem;color:var(--muted);line-height:1.6}
-			.section{margin-top:24px}
-			.section h3{font-size:1.25rem;margin:0 0 12px}
-			.pill{display:inline-block;background:#eef7f7;color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:600;font-size:0.85rem}
-
-			.right{padding:8px}
-			.summary{background:var(--card);padding:12px 14px;border-radius:10px;border:3px solid rgba(16,24,40,0.06);margin-bottom:18px}
-			.summary p{margin:0}
-			.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-			.summary h3{font-size:1.9rem;margin:0 0 10px;font-weight:600}
-
-			.job{margin-bottom:14px}
-			.job .role{font-weight:700}
-			.job .meta{font-size:0.9rem;color:var(--muted)}
-			.bullet{margin:8px 0 0;padding-left:18px}
-			.skill-list{display:flex;flex-wrap:wrap;gap:8px}
-			.skill{background:var(--skill-bg);padding:6px 8px;border-radius:6px;font-size:0.85rem;color:var(--text)}
-
-			@media (max-width:760px){
-				.cv-card{grid-template-columns:1fr;gap:14px;padding:18px}
-				.avatar img{width:140px;height:140px}
-			}
-
-			.muted{color:var(--text)}
-
-			section[aria-labelledby="education-heading"],
-			section[aria-labelledby="experience-heading"],
-			section[aria-labelledby="hobby-heading"],
-			section[aria-labelledby="lang-heading"]{
-				border-radius:10px;
-				padding:12px 14px;
-				margin-top:18px;
-				border-top:0;
-				background:var(--card);
-				position:relative;
-				z-index:1;
-				overflow:visible;
-			}
-
-			section[aria-labelledby="education-heading"],
-			section[aria-labelledby="experience-heading"],
-			section[aria-labelledby="hobby-heading"],
-			section[aria-labelledby="lang-heading"],
-			section[aria-labelledby="contact-heading"],
-			section[aria-labelledby="skills-heading"],
-			.summary{
-				transition:transform .18s ease, box-shadow .18s ease;
-				transform-origin:center top;
-			}
-			section[aria-labelledby="education-heading"]:hover,
-			section[aria-labelledby="experience-heading"]:hover,
-			section[aria-labelledby="hobby-heading"]:hover,
-			section[aria-labelledby="lang-heading"]:hover,
-			section[aria-labelledby="contact-heading"]:hover,
-			section[aria-labelledby="skills-heading"]:hover,
-			.summary:hover{
-				transform: translateY(-3px) scale(1.01);
-				box-shadow:0 14px 30px rgba(16,24,40,0.09);
-			}
-
-			section[aria-labelledby="education-heading"]{border:3px solid #c1e5fa}
-			section[aria-labelledby="experience-heading"]{border:3px solid #dff6e6}
-			section[aria-labelledby="hobby-heading"]{border:3px solid #fff4d6}
-			section[aria-labelledby="lang-heading"]{border:3px solid #f0ddff}
-
-			section[aria-labelledby="contact-heading"],
-			section[aria-labelledby="skills-heading"]{
-				background:var(--card);
-				border-radius:10px;
-				padding:12px 14px;
-				margin-top:18px;
-				box-shadow: 0 0 0 3px rgba(16,24,40,0.06);
-			}
-			section[aria-labelledby="contact-heading"]{border:3px solid #cfe8ff}
-			section[aria-labelledby="skills-heading"]{border:3px solid #dff6e6}
-
-			section[aria-labelledby="education-heading"] strong{display:block;font-size:1rem;margin-bottom:6px}
-		a{color:var(--accent);text-decoration:none}
-		.controls{display:flex;gap:8px;justify-content:flex-end}
-			.btn{background:var(--accent);color:var(--btn-text);padding:8px 12px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
-			#langToggle{background:#ffffff;color:var(--accent);border:0;margin:0 0 4px 0;padding:8px 12px}
-			[data-en]{transition:opacity .22s ease;opacity:1}
-		.btn.secondary{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.06);}
-		</style>
-	</head>
-	<body>
-		<div class="container">
-			<div class="controls">
-				<button id="langToggle" class="btn" aria-pressed="false">Eng</button>
-			</div>
-
-			<article class="cv-card" role="article" aria-label="Curriculum Vitae">
-				<aside class="left" aria-label="Sidebar">
-					<div class="avatar">
-						<img src="https://github.com/xlucifx/cv/blob/main/IMG_9555.jpg?raw=true" alt="Zdjęcie Jakuba" id="avatar">
-					</div>
-					<div class="name-under-photo" aria-hidden="false">
-						Jakub Guzy
-					</div>
-
-					<div class="section" aria-labelledby="contact-heading">
-						<h3 id="contact-heading" data-pl="Kontakt" data-en="Contact">Kontakt</h3>
-						<div class="contact">
-							<div><span class="c-label" data-pl="Email: " data-en="Email: ">Email: </span><a href="mailto:guzykuba@gmail.com">guzykuba@gmail.com</a></div>
-							<div><span class="c-label" data-pl="Telefon: " data-en="Phone: ">Telefon: </span><a href="tel:+48514805514">+48 514 805 514</a></div>
-							<div><span class="c-label" data-pl="Lokalizacja: " data-en="Location: ">Lokalizacja: </span>Polska, Warszawa</div>
-							<div><a href="https://github.com/xlucifx" aria-label="GitHub" target="_blank" rel="noopener">GitHub</a></div>
-						</div>
-					</div>
-
-					<div class="section" aria-labelledby="skills-heading">
-						<h3 id="skills-heading" data-pl="Umiejętności" data-en="Skills">Umiejętności</h3>
-						<div class="skill-list" aria-hidden="false">
-							<span class="skill">HTML</span>
-							<span class="skill">CSS</span>
-							<span class="skill">JavaScript</span>
-							<span class="skill">Photoshop</span>
-							<span class="skill">Illustrator</span>
-							<span class="skill">Java</span>
-							<span class="skill">Blender</span>
-							<span class="skill">Maya</span>
-						</div>
-					</div>
-
-				</aside>
-
-				<main class="right">
-					<section class="summary" aria-labelledby="summary-heading">
-						<h3 id="summary-heading" class="sr-only" data-pl="Profil" data-en="Profile">Profil</h3>
-						<p id="profile" data-pl="<strong>Jestem</strong> studentem informatyki połączonej z zarządzaniem i poszukuję praktyk z dziedziny programowania, żeby zdobywać doświadczenie. Jestem kreatywny, otwarty na naukę i zdeterminowany." data-en="<strong>I am</strong> a Computer Science and Management student seeking programming internships to gain practical experience. I am creative, eager to learn, and determined."><strong>Jestem</strong> studentem informatyki połączonej z zarządzaniem i poszukuję praktyk z dziedziny programowania, żeby zdobywać doświadczenie. <strong>Jestem</strong> kreatywny, otwarty na naukę i zdeterminowany.</p>
-					</section>
-
-					<section class="section" aria-labelledby="education-heading">
-						<h3 id="education-heading" data-pl="Edukacja" data-en="Education">Edukacja</h3>
-						<div>
-							<strong id="edu1-title" data-pl="Matematyka" data-en="Mathematics">Matematyka</strong>
-							<div id="edu1-meta" class="muted" data-pl="1 rok na Uniwersytecie Jagiellońskim" data-en="1 year at the Jagiellonian University">1 rok na Uniwersytecie Jagiellońskim</div>
-						</div>
-						<div style="margin-top:8px">
-							<strong id="edu2-title" data-pl="Zarządzanie informacją" data-en="Information Management">Zarządzanie informacją</strong>
-							<div id="edu2-meta" class="muted" data-pl="3 lata — do teraz na Polsko-Japońskiej Akademii Technik Komputerowych (PJWSTK)" data-en="3 years — currently at the Polish-Japanese Academy of Information Technology (PJWSTK)">3 lata — do teraz na Polsko-Japońskiej Akademii Technik Komputerowych (PJWSTK)</div>
-						</div>
-					</section>
-
-					<section class="section" aria-labelledby="experience-heading">
-						<h3 id="experience-heading" data-pl="Doświadczenie" data-en="Experience">Doświadczenie</h3>
-
-						<div class="job">
-							<div id="role1" class="role" data-pl="Tworzenie stron internetowych — Freelancer" data-en="Website development — Freelancer">Tworzenie stron internetowych — Freelancer</div>
-							<div id="meta1" class="meta" data-pl="Projekty zlecone / freelance" data-en="Commissioned projects / freelance">Projekty zlecone / freelance</div>
-							<ul class="bullet">
-								<li id="r1l1" data-pl="Tworzenie responsywnych stron WWW dla klientów indywidualnych." data-en="Creating responsive websites for individual clients.">Tworzenie responsywnych stron WWW dla klientów indywidualnych.</li>
-								<li id="r1l2" data-pl="Praca z HTML, CSS i JavaScript i optymalizacja wydajności." data-en="Working with HTML, CSS and JavaScript; performance optimization.">Praca z HTML, CSS i JavaScript, optymalizacja wydajności i SEO podstawy.</li>
-							</ul>
-						</div>
-
-						<div class="job">
-							<div id="role2" class="role" data-pl="Kelner — Restauracja" data-en="Waiter — Restaurant">Kelner — Restauracja</div>
-							<div id="meta2" class="meta" data-pl="Ok. 1,5 roku" data-en="~1.5 years">Ok. 1,5 roku</div>
-							<ul class="bullet">
-								<li id="r2l1" data-pl="Praca w szybkim tempie pod presją czasu." data-en="Working in a fast-paced, high-pressure environment.">Praca w szybkim tempie pod presją czasu.</li>
-								<li id="r2l2" data-pl="Rozwijanie umiejętności pracy zespołowej i komunikacji z klientem." data-en="Developing teamwork and customer communication skills.">Rozwijanie umiejętności pracy zespołowej i komunikacji z klientem.</li>
-								<li id="r2l3" data-pl="Zwracanie uwagę na szczegóły i dbałość o jakość obsługi." data-en="Attention to detail and commitment to service quality.">Zwracanie uwagę na szczegóły i dbałość o jakość obsługi.</li>
-							</ul>
-						</div>
-
-						<div class="job">
-							<div id="role3" class="role" data-pl="Renderowanie 3D" data-en="3D Rendering">Renderowanie 3D</div>
-							<div id="meta3" class="meta" data-pl="2 lata · Poziom: bardzo wysoki" data-en="2 years · Level: advanced">2 lata · Poziom: bardzo wysoki</div>
-							<ul class="bullet">
-								<li id="r3l1" data-pl="Zaawansowane renderowanie i postprodukcja w Blender / Maya." data-en="Advanced rendering and post-production in Blender / Maya.">Zaawansowane renderowanie i postprodukcja w Blender / Maya.</li>
-								<li id="r3l2" data-pl="Tworzenie materiałów, oświetlenia i finalnej kompozycji scen 3D." data-en="Creating materials, lighting and final composition of 3D scenes.">Tworzenie materiałów, oświetlenia i finalnej kompozycji scen 3D.</li>
-							</ul>
-						</div>
-					</section>
-
-					<section class="section" aria-labelledby="hobby-heading">
-						<h3 id="hobby-heading" data-pl="Zainteresowania i hobby" data-en="Interests & hobbies">Zainteresowania i hobby</h3>
-						<div id="hobby-meta" class="muted" data-pl="Interesuję się renderowaniem 3D w różnych programach. W wolnym czasie gram na pianinie, gotuję i chodzę na siłownię." data-en="I am interested in 3D rendering across various software. In my free time I play piano, cook and go to the gym.">Interesuję się renderowaniem 3D w różnych programach. W wolnym czasie gram na pianinie, gotuję i chodzę na siłownię.</div>
-					</section>
-
-					<section class="section" aria-labelledby="lang-heading">
-						<h3 id="lang-heading" data-pl="Języki" data-en="Languages">Języki</h3>
-						<div id="lang-meta" class="muted" data-pl="Angielski (Biegły) · Polski (Ojczysty)" data-en="English (Fluent) · Polish (Native)">Angielski (Biegły) · Polski (Ojczysty)</div>
-					</section>
-
-					<footer style="margin-top:18px" class="muted" id="cv-footer" data-pl="Ostatnia aktualizacja: paź 2025" data-en="Last updated: Oct 2025">Ostatnia aktualizacja: paź 2025</footer>
-				</main>
-			</article>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Your Name — CV</title>
+	<meta name="description" content="Curriculum Vitae of Your Name">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<div class="container">
+		<div class="controls">
+			<button id="langToggle" class="btn" aria-pressed="false">Eng</button>
 		</div>
 
-		<script>
-		(function(){
-			const toggle = document.getElementById('langToggle');
-			if(!toggle) return;
-			const nodes = Array.from(document.querySelectorAll('[data-en]'));
-			const DURATION = 220;
+		<article class="cv-card" role="article" aria-label="Curriculum Vitae">
+			<aside class="left" aria-label="Sidebar">
+				<div class="avatar">
+					<img src="IMG_9555.jpg" alt="Zdjęcie Jakuba" id="avatar">
+				</div>
+				<div class="name-under-photo" aria-hidden="false">
+					Jakub Guzy
+				</div>
 
-			function applyTexts(en){
-				nodes.forEach(el=>{
-					const tag = el.tagName.toLowerCase();
-					const text = en ? el.getAttribute('data-en') : el.getAttribute('data-pl');
-					if(text==null) return;
-					if(tag === 'input' || tag === 'textarea') el.value = text;
-					else el.innerHTML = text;
-				});
-			}
+				<div class="section" aria-labelledby="contact-heading">
+					<h3 id="contact-heading" data-pl="Kontakt" data-en="Contact">Kontakt</h3>
+					<div class="contact">
+						<div><span class="c-label" data-pl="Email: " data-en="Email: ">Email: </span><a href="mailto:guzykuba@gmail.com">guzykuba@gmail.com</a></div>
+						<div><span class="c-label" data-pl="Telefon: " data-en="Phone: ">Telefon: </span><a href="tel:+48514805514">+48 514 805 514</a></div>
+						<div><span class="c-label" data-pl="Lokalizacja: " data-en="Location: ">Lokalizacja: </span>Polska, Warszawa</div>
+						<div><a href="https://github.com/xlucifx" aria-label="GitHub" target="_blank" rel="noopener">GitHub</a></div>
+					</div>
+				</div>
 
-			function setLang(en, animated = true){
-				if(!animated){
-					applyTexts(en);
-					toggle.textContent = en ? 'PL' : 'Eng';
-					toggle.setAttribute('aria-pressed', en ? 'true':'false');
-					localStorage.setItem('cv-lang', en ? 'en' : 'pl');
-					return;
-				}
+				<div class="section" aria-labelledby="skills-heading">
+					<h3 id="skills-heading" data-pl="Umiejętności" data-en="Skills">Umiejętności</h3>
+					<div class="skill-list" aria-hidden="false">
+						<span class="skill">HTML</span>
+						<span class="skill">CSS</span>
+						<span class="skill">JavaScript</span>
+						<span class="skill">Photoshop</span>
+						<span class="skill">Illustrator</span>
+						<span class="skill">Java</span>
+						<span class="skill">Blender</span>
+						<span class="skill">Maya</span>
+					</div>
+				</div>
 
-				nodes.forEach(el=>{ el.style.transition = `opacity ${DURATION}ms ease`; el.style.opacity = '0'; });
-				setTimeout(()=>{
-					applyTexts(en);
-					nodes.forEach(el=>{ el.style.opacity = '1'; });
-					toggle.textContent = en ? 'PL' : 'Eng';
-					toggle.setAttribute('aria-pressed', en ? 'true':'false');
-					localStorage.setItem('cv-lang', en ? 'en' : 'pl');
-				}, DURATION);
-			}
+			</aside>
 
-			const saved = localStorage.getItem('cv-lang');
-			if(saved === 'en') setLang(true, false);
+			<main class="right">
+				<section class="summary" aria-labelledby="summary-heading">
+					<h3 id="summary-heading" class="sr-only" data-pl="Profil" data-en="Profile">Profil</h3>
+					<p id="profile" data-pl="<strong>Jestem</strong> studentem informatyki połączonej z zarządzaniem i poszukuję praktyk z dziedziny programowania, żeby zdobywać doświadczenie. Jestem kreatywny, otwarty na naukę i zdeterminowany." data-en="<strong>I am</strong> a Computer Science and Management student seeking programming internships to gain practical experience. I am creative, eager to learn, and determined."><strong>Jestem</strong> studentem informatyki połączonej z zarządzaniem i poszukuję praktyk z dziedziny programowania, żeby zdobywać doświadczenie. <strong>Jestem</strong> kreatywny, otwarty na naukę i zdeterminowany.</p>
+				</section>
 
-			toggle.addEventListener('click', ()=>{
-				const nowEn = localStorage.getItem('cv-lang') === 'en';
-				setLang(!nowEn, true);
-			});
-		})();
-		</script>
+				<section class="section" aria-labelledby="education-heading">
+					<h3 id="education-heading" data-pl="Edukacja" data-en="Education">Edukacja</h3>
+					<div>
+						<strong id="edu1-title" data-pl="Matematyka" data-en="Mathematics">Matematyka</strong>
+						<div id="edu1-meta" class="muted" data-pl="1 rok na Uniwersytecie Jagiellońskim" data-en="1 year at the Jagiellonian University">1 rok na Uniwersytecie Jagiellońskim</div>
+					</div>
+					<div style="margin-top:8px">
+						<strong id="edu2-title" data-pl="Zarządzanie informacją" data-en="Information Management">Zarządzanie informacją</strong>
+						<div id="edu2-meta" class="muted" data-pl="3 lata — do teraz na Polsko-Japońskiej Akademii Technik Komputerowych (PJWSTK)" data-en="3 years — currently at the Polish-Japanese Academy of Information Technology (PJWSTK)">3 lata — do teraz na Polsko-Japońskiej Akademii Technik Komputerowych (PJWSTK)</div>
+					</div>
+				</section>
 
-	</body>
-	</html>
-			
+				<section class="section" aria-labelledby="experience-heading">
+					<h3 id="experience-heading" data-pl="Doświadczenie" data-en="Experience">Doświadczenie</h3>
 
+					<div class="job">
+						<div id="role1" class="role" data-pl="Tworzenie stron internetowych — Freelancer" data-en="Website development — Freelancer">Tworzenie stron internetowych — Freelancer</div>
+						<div id="meta1" class="meta" data-pl="Projekty zlecone / freelance" data-en="Commissioned projects / freelance">Projekty zlecone / freelance</div>
+						<ul class="bullet">
+							<li id="r1l1" data-pl="Tworzenie responsywnych stron WWW dla klientów indywidualnych." data-en="Creating responsive websites for individual clients.">Tworzenie responsywnych stron WWW dla klientów indywidualnych.</li>
+							<li id="r1l2" data-pl="Praca z HTML, CSS i JavaScript i optymalizacja wydajności." data-en="Working with HTML, CSS and JavaScript; performance optimization and basic SEO.">Praca z HTML, CSS i JavaScript, optymalizacja wydajności i SEO podstawy.</li>
+						</ul>
+					</div>
 
+					<div class="job">
+						<div id="role2" class="role" data-pl="Kelner — Restauracja" data-en="Waiter — Restaurant">Kelner — Restauracja</div>
+						<div id="meta2" class="meta" data-pl="Ok. 1,5 roku" data-en="~1.5 years">Ok. 1,5 roku</div>
+						<ul class="bullet">
+							<li id="r2l1" data-pl="Praca w szybkim tempie pod presją czasu." data-en="Working in a fast-paced, high-pressure environment.">Praca w szybkim tempie pod presją czasu.</li>
+							<li id="r2l2" data-pl="Rozwijanie umiejętności pracy zespołowej i komunikacji z klientem." data-en="Developing teamwork and customer communication skills.">Rozwijanie umiejętności pracy zespołowej i komunikacji z klientem.</li>
+							<li id="r2l3" data-pl="Zwracanie uwagę na szczegóły i dbałość o jakość obsługi." data-en="Attention to detail and commitment to service quality.">Zwracanie uwagę na szczegóły i dbałość o jakość obsługi.</li>
+						</ul>
+					</div>
 
+					<div class="job">
+						<div id="role3" class="role" data-pl="Renderowanie 3D" data-en="3D Rendering">Renderowanie 3D</div>
+						<div id="meta3" class="meta" data-pl="2 lata · Poziom: bardzo wysoki" data-en="2 years · Level: advanced">2 lata · Poziom: bardzo wysoki</div>
+						<ul class="bullet">
+							<li id="r3l1" data-pl="Zaawansowane renderowanie i postprodukcja w Blender / Maya." data-en="Advanced rendering and post-production in Blender / Maya.">Zaawansowane renderowanie i postprodukcja w Blender / Maya.</li>
+							<li id="r3l2" data-pl="Tworzenie materiałów, oświetlenia i finalnej kompozycji scen 3D." data-en="Creating materials, lighting and final composition of 3D scenes.">Tworzenie materiałów, oświetlenia i finalnej kompozycji scen 3D.</li>
+						</ul>
+					</div>
+				</section>
 
+				<section class="section" aria-labelledby="hobby-heading">
+					<h3 id="hobby-heading" data-pl="Zainteresowania i hobby" data-en="Interests & hobbies">Zainteresowania i hobby</h3>
+					<div id="hobby-meta" class="muted" data-pl="Interesuję się renderowaniem 3D w różnych programach. W wolnym czasie gram na pianinie, gotuję i chodzę na siłownię." data-en="I am interested in 3D rendering across various software. In my free time I play piano, cook and go to the gym.">Interesuję się renderowaniem 3D w różnych programach. W wolnym czasie gram na pianinie, gotuję i chodzę na siłownię.</div>
+				</section>
+
+				<section class="section" aria-labelledby="lang-heading">
+					<h3 id="lang-heading" data-pl="Języki" data-en="Languages">Języki</h3>
+					<div id="lang-meta" class="muted" data-pl="Angielski (Biegły) · Polski (Ojczysty)" data-en="English (Fluent) · Polish (Native)">Angielski (Biegły) · Polski (Ojczysty)</div>
+				</section>
+
+				<footer style="margin-top:18px" class="muted" id="cv-footer" data-pl="Ostatnia aktualizacja: paź 2025" data-en="Last updated: Oct 2025">Ostatnia aktualizacja: paź 2025</footer>
+			</main>
+		</article>
+	</div>
+
+	<script src="script.js"></script>
+
+</body>
+</html>
